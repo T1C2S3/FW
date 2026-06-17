@@ -2,7 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FW Kasse">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Feuerwehr Legden – Kasse</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -17,6 +21,7 @@
 }
 
 body {
+  padding-bottom: env(safe-area-inset-bottom);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   background: var(--bg); color: var(--text);
   height: 100dvh; display: flex; flex-direction: column; overflow: hidden;
@@ -515,7 +520,7 @@ const DEFAULTS = {
     ]},
     { name:"🥤 Softdrinks", artikel:[
       {id:4, name:"Wasser/Cola/Fanta",  preis:2, icon:"🥤", bulk:[]},
-      {id:5, name:"Flasche Softdrink",  preis:8, icon:"🍾", bulk:[]},
+      {id:5, name:"Flasche Softdrink",  preis:8, icon:"🧃", bulk:[]},
     ]},
     { name:"🥃 Schnaps (Glas)", artikel:[
       {id:6,  name:"Sasse Korn 32%",         preis:2, icon:"🥃", bulk:[
@@ -1048,7 +1053,7 @@ function addKat() {
   saveData(); renderKasse();
 }
 
-showPage('favs');
+showPage('kasse');
 </script>
 </body>
 </html>
