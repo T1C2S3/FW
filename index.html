@@ -21,7 +21,6 @@
 }
 
 body {
-  padding-bottom: env(safe-area-inset-bottom);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   background: var(--bg); color: var(--text);
   height: 100dvh; display: flex; flex-direction: column; overflow: hidden;
@@ -29,7 +28,7 @@ body {
 
 /* ── HEADER ── */
 header {
-  background: var(--anthracite); padding: 10px 14px 8px;
+  background: var(--anthracite); padding: calc(env(safe-area-inset-top) + 10px) 14px 8px;
   display: flex; align-items: center; gap: 10px; flex-shrink: 0;
 }
 .header-logo { font-size: 26px; line-height: 1; }
@@ -169,7 +168,7 @@ header {
   font-size: 9px; font-weight: 700; background: var(--red-soft);
   color: var(--red); border-radius: 4px; padding: 1px 4px; white-space: nowrap;
 }
-.drawer-actions { display: flex; gap: 8px; padding: 8px 14px 12px; }
+.drawer-actions { display: flex; gap: 8px; padding: 8px 14px calc(env(safe-area-inset-bottom) + 12px); }
 .btn-kasse {
   flex: 1; background: var(--green); color: #fff; border: none;
   border-radius: 12px; padding: 13px; font-size: 15px; font-weight: 700; cursor: pointer;
@@ -283,7 +282,7 @@ header {
 .j-clear-btn {
   width: 100%; background: #FFE5E7; color: var(--red); border: none;
   border-radius: 12px; padding: 12px; font-size: 13px; font-weight: 700;
-  cursor: pointer; margin-top: 12px;
+  cursor: pointer; margin-top: 12px; margin-bottom: env(safe-area-inset-bottom);
 }
 
 /* ── BULK POPUP ── */
