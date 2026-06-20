@@ -553,16 +553,22 @@ const DEFAULTS = {
       {id:14, name:"Safari & Mix",           preis:5, icon:"🍹", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
       {id:15, name:"Schlüter Korn & Mix",    preis:4, icon:"🍹", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
       {id:16, name:"Bolanow Wodka & Mix",    preis:5, icon:"🍹", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
-      {id:17, name:"Debussy VSOP & Mix",     preis:5, icon:"🥃", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
+      {id:17, name:"Debussy VSOP & Mix",     preis:5, icon:"🥃", bulk:[]},
       {id:18, name:"Havanna Club & Mix",     preis:5, icon:"🍹", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
       {id:19, name:"Wild Berry/Aperol",      preis:5, icon:"🍊", bulk:[{label:"Flasche + Mix", desc:"ca. 10 Gläser", preis:50}]},
     ]},
     { name:"🍾 Sekt", artikel:[
       {id:20, name:"Schloss Eden Sekt",      preis:3, icon:"🥂", bulk:[{label:"Flasche", desc:"0,75 L", preis:15}]},
     ]},
+    { name:"☕ Kaffee & Kuchen", artikel:[
+      {id:21, name:"Tasse Kaffee",           preis:1, icon:"☕", bulk:[]},
+      {id:22, name:"Stück Kuchen",           preis:2, icon:"🍰", bulk:[]},
+      {id:23, name:"2 Schnittchen",          preis:2, icon:"🥪", bulk:[]},
+      {id:24, name:"Flat-Menü",              preis:6, icon:"🎉", bulk:[{label:"2 Kuchen + Kaffee-Flat", desc:"6 €", preis:6},{label:"4 Schnittchen + Kaffee-Flat", desc:"6 €", preis:6}]},
+    ]},
   ],
   favoriten: [],
-  nextId: 21,
+  nextId: 25,
 };
 
 function loadData() {
