@@ -42,6 +42,58 @@ header {
 }
 .header-edit-btn.is-editing { background: var(--red); color: #fff; }
 
+/* ── PROMILLE / BETRUNKEN MODUS ── */
+.promille-btn {
+  background: rgba(255,255,255,0.1); border: none;
+  font-size: 18px; padding: 5px 9px; border-radius: 20px;
+  cursor: pointer; margin-left: 6px; line-height: 1;
+}
+.promille-btn.is-drunk { background: var(--gold); }
+
+@keyframes wobble {
+  0%,100% { transform: rotate(-1.2deg) translateY(0); }
+  25%     { transform: rotate(1deg)  translateY(-1px); }
+  50%     { transform: rotate(-0.6deg) translateY(1px); }
+  75%     { transform: rotate(1.4deg) translateY(-1px); }
+}
+@keyframes sway {
+  0%,100% { transform: translateX(-3px) rotate(-0.4deg); }
+  50%     { transform: translateX(3px) rotate(0.4deg); }
+}
+@keyframes hue {
+  0%,100% { filter: hue-rotate(0deg); }
+  50%     { filter: hue-rotate(12deg); }
+}
+
+body.drunk { animation: hue 8s ease-in-out infinite; }
+body.drunk .artikel-grid { animation: sway 6s ease-in-out infinite; }
+body.drunk .artikel-card {
+  animation: wobble 2.5s ease-in-out infinite;
+}
+body.drunk .artikel-card:nth-child(2n)   { animation-duration: 3.1s; animation-delay: 0.3s; }
+body.drunk .artikel-card:nth-child(3n)   { animation-duration: 2.2s; animation-delay: 0.6s; }
+body.drunk .artikel-card:nth-child(4n)   { animation-duration: 3.6s; animation-delay: 0.15s; }
+
+/* Stufe 2 = beschwipst, Stufe 3 = blau */
+body.drunk-2 .artikel-card { animation-duration: 1.8s; }
+body.drunk-2 .artikel-grid { animation-duration: 4s; }
+body.drunk-3 .artikel-card { animation-duration: 1.1s; }
+body.drunk-3 .artikel-grid { animation-duration: 2.5s; }
+body.drunk-3 { animation-duration: 4s; }
+
+/* Größere Buttons & Texte im drunk mode */
+body.drunk .artikel-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+body.drunk .artikel-card { min-height: 120px; padding: 18px 10px; }
+body.drunk .a-icon  { font-size: 42px; }
+body.drunk .a-name  { font-size: 14px; }
+body.drunk .a-preis { font-size: 22px; }
+body.drunk .wk-r-btn { width: 34px; height: 34px; font-size: 20px; }
+body.drunk .btn-kasse { padding: 18px; font-size: 19px; }
+body.drunk .sb-betrag { font-size: 28px; }
+
+body.drunk .header-text h1::after { content: " 🥴"; }
+
+
 /* ── TAB NAV ── */
 .tab-nav {
   display: flex; background: var(--anthracite);
@@ -399,6 +451,7 @@ header {
   </div>
   <div class="header-spacer"></div>
   <button class="header-edit-btn" id="edit-btn" onclick="toggleEdit()">✏️ Bearbeiten</button>
+  <button class="promille-btn" id="promille-btn" onclick="toggleDrunk()" title="Promille-Modus">🍺</button>
 </header>
 
 <div class="tab-nav">
@@ -1056,6 +1109,34 @@ function addKat() {
   D.kategorien.push({name:n,artikel:[]});
   activeKat=D.kategorien.length-1;
   saveData(); renderKasse();
+}
+
+// ── PROMILLE MODUS (Gag) ──────────────────────────
+let drunkLevel = 0;
+const DRUNK_SLOGANS = [
+  "🍺 Prost! Promille-Modus an",
+  "🥴 Ohh das wackelt ja",
+  "🍻 Noch einen? Zahlen tut die Wehr!",
+  "🌀 Wer hat die Kasse gedreht?",
+  "🔥 112 — aber erst morgen!",
+];
+function toggleDrunk() {
+  drunkLevel = (drunkLevel + 1) % 4;
+  const body = document.body;
+  const btn  = document.getElementById('promille-btn');
+  body.classList.remove('drunk','drunk-2','drunk-3');
+  if(drunkLevel > 0) {
+    body.classList.add('drunk');
+    if(drunkLevel >= 2) body.classList.add('drunk-2');
+    if(drunkLevel >= 3) body.classList.add('drunk-3');
+    btn.classList.add('is-drunk');
+    btn.textContent = ['🍺','🍻','🥴','🤪'][drunkLevel];
+    toast(DRUNK_SLOGANS[Math.floor(Math.random()*DRUNK_SLOGANS.length)]);
+  } else {
+    btn.classList.remove('is-drunk');
+    btn.textContent = '🍺';
+    toast("😇 Wieder nüchtern. Schade.");
+  }
 }
 
 showPage('kasse');
